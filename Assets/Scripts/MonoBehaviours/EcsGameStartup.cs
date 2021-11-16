@@ -44,7 +44,8 @@ namespace SpaceBattle.MonoBehaviours {
         private void AddSystems()
         {
             _systems
-                .Add(new InputSystem())
+                .Add(new BackgroundSystem())
+                // .Add(new InputSystem())
             ;
         }
 

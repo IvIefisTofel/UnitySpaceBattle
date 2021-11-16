@@ -1,13 +1,11 @@
 ﻿using Leopotam.Ecs;
-using SpaceBattle.Components;
-using SpaceBattle.Tags;
 using UnityEngine;
 
 namespace SpaceBattle.Systems
 {
     public class InputSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<ModelComponent, PlayerTag> _directionFilter = null;
+        // private readonly EcsFilter<ModelComponent, PlayerTag> _directionFilter = null;
         
         private float _moveX;
         private float _moveZ;
