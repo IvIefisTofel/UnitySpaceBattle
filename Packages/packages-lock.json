@@ -1,11 +1,18 @@
 {
   "dependencies": {
-    "com.leopotam.ecslite": {
-      "version": "https://github.com/Leopotam/ecslite.git",
+    "com.leopotam.ecs": {
+      "version": "https://github.com/Leopotam/ecs.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "bc2e10a9edb66bbc20a1d516c932a7a313c18254"
+      "hash": "97a605bc57543b3b89a7462d78c149e8b03943da"
+    },
+    "com.leopotam.ecs-unityintegration": {
+      "version": "https://github.com/Leopotam/ecs-unityintegration.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "127d6a8f02ec987ac724a7fc671b1d5d00b0ea56"
     },
     "com.unity.2d.animation": {
       "version": "5.0.9",
@@ -204,12 +211,12 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
-    "com.voody.unileo.lite": {
-      "version": "https://github.com/voody2506/UniLeo-Lite.git",
+    "com.voody.unileo": {
+      "version": "https://github.com/voody2506/UniLeo.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "640e5a72eee39c65c012face4425f1c504b8b8f4"
+      "hash": "bef45e8453bbeea579a5234b522f0de44b6aeddf"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
