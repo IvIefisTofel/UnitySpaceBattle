@@ -20,7 +20,6 @@ namespace SpaceBattle.Systems
             {
                 ref var direction = ref _directionFilter.Get1(i).direction;
 
-                Debug.Log(direction);
                 direction.x = _moveX;
                 direction.y = _moveY;
             }
