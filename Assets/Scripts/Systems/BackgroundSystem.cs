@@ -7,20 +7,22 @@ using UnityEngine;
 
 namespace SpaceBattle.Systems
 {
-    public class BackgroundSystem : IEcsRunSystem
+    internal sealed class BackgroundSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<ModelComponent, BackgroundSpriteTag> _background = default;
+        private const float Speed = 0.2f;
+
+        private readonly EcsFilter<ModelComponent, BackgroundSpriteTag> _backgroundFilter = default;
 
         public void Run()
         {
             var deltaTime = Time.deltaTime;
-            foreach (var i in _background) {
-                ref var sprite = ref _background.Get1(i);
-                
-                sprite.modelTransform.Translate(Vector3.down * deltaTime);
+            foreach (var i in _backgroundFilter) {
+                ref var transform = ref _backgroundFilter.Get1(i).modelTransform;
 
-                if (sprite.modelTransform.position.y < -10) {
-                    sprite.modelTransform.position += new Vector3(0, 30);
+                transform.Translate(Vector3.down * Speed * deltaTime);
+
+                if (transform.position.y < -10) {
+                    transform.position += new Vector3(0, 30);
                 }
             }
         }

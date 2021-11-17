@@ -10,7 +10,7 @@ namespace SpaceBattle.MonoBehaviours {
 
         public void Start () {
             // void can be switched to IEnumerator for support coroutines.
-            
+
             _world = new EcsWorld ();
             _systems = new EcsSystems (_world);
 #if UNITY_EDITOR
@@ -45,7 +45,8 @@ namespace SpaceBattle.MonoBehaviours {
         {
             _systems
                 .Add(new BackgroundSystem())
-                // .Add(new InputSystem())
+                .Add(new PlayerInputSystem())
+                .Add(new MovementSystem())
             ;
         }
 
