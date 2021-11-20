@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SpaceBattle.Player
 {
@@ -8,7 +7,7 @@ namespace SpaceBattle.Player
         public const int BlueSpaceShip = 0;
         public const int RedSpaceShip = 1;
         public const int YellowSpaceShip = 2;
-        
+
         private int _currentSpaceship = BlueSpaceShip;
         private int _currentLevel = 1;
         private Animator _animator;
@@ -41,7 +40,7 @@ namespace SpaceBattle.Player
                 if (i == level) {
                     var activeGameObject = spaceShipType.GetChild(i).gameObject;
                     activeGameObject.SetActive(true);
-                    
+
                     _options = activeGameObject.GetComponent<SpaceShipOptions>();
 
                     if (_animator != null)
@@ -59,7 +58,7 @@ namespace SpaceBattle.Player
 
             return this;
         }
-        
+
         private void Start()
         {
             SetActiveSpaceShip(_currentSpaceship, _currentLevel);

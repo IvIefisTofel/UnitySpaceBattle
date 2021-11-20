@@ -100,7 +100,7 @@ namespace SpaceBattle.Player
             else {
                 _activeSpaceShipAnimator.SetTrigger(MoveUpDown);
             }
-            
+
             player.Translate(rawDirection);
         }
     }
