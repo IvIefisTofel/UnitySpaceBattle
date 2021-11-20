@@ -6,13 +6,20 @@ namespace SpaceBattle.Player
 {
     public class PlayerMoving : MonoBehaviour
     {
-        public float movingSpeed = 1.2f;
         public Transform player;
         public BoxCollider2D playerCollider;
-        public Animator animator;
+        public ChangeLevel changeLevel;
 
         private Restrictions _restrictions;
         private PlayerInputAction _controls;
+
+        private Animator _activeSpaceShipAnimator;
+        private SpaceShipOptions _activeSpaceShipOptions;
+
+        private static readonly int Idle = Animator.StringToHash("Idle");
+        private static readonly int MoveUpDown = Animator.StringToHash("MoveUpDown");
+        private static readonly int MoveLeft = Animator.StringToHash("MoveLeft");
+        private static readonly int MoveRight = Animator.StringToHash("MoveRight");
 
         private void Start()
         {
@@ -35,11 +42,19 @@ namespace SpaceBattle.Player
         private void OnEnable()
         {
             _controls.Enable();
+            ChangeLevel.OnLevelChanged += ChangeActiveSpaceShip;
         }
 
         private void OnDisable()
         {
             _controls.Disable();
+            ChangeLevel.OnLevelChanged -= ChangeActiveSpaceShip;
+        }
+
+        private void ChangeActiveSpaceShip()
+        {
+            _activeSpaceShipAnimator = changeLevel.GetActiveSpaceShipAnimator();
+            _activeSpaceShipOptions = changeLevel.GetActiveSpaceShipOptions();
         }
 
         private void Update()
@@ -49,7 +64,9 @@ namespace SpaceBattle.Player
 
         private void PlayerMove(Vector2 direction)
         {
-            var rawDirection = new Vector3(direction.x, direction.y) * movingSpeed * Time.deltaTime;
+            var rawDirection = new Vector3(direction.x, direction.y)
+                               * _activeSpaceShipOptions.speedMultiplier
+                               * Time.deltaTime;
 
             if (rawDirection.x != 0)
                 foreach (var x in _restrictions.x)
@@ -72,16 +89,16 @@ namespace SpaceBattle.Player
                     }
 
             if (rawDirection.x == 0 && rawDirection.y == 0) {
-                animator.Play("Player_idle");
+                _activeSpaceShipAnimator.SetTrigger(Idle);
             } else if (rawDirection.x != 0) {
-                animator.Play(
+                _activeSpaceShipAnimator.SetTrigger(
                     rawDirection.x < 0
-                        ? "Player_move_left"
-                        : "Player_move_right"
+                        ? MoveLeft
+                        : MoveRight
                     );
             }
             else {
-                animator.Play("Player_move_up_down");
+                _activeSpaceShipAnimator.SetTrigger(MoveUpDown);
             }
             
             player.Translate(rawDirection);
